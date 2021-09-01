@@ -18,7 +18,7 @@ do
 done
 
 #install git
-case "$1" in
+case "$os" in
     fedora) sudo dnf install git;;
     ubuntu) sudo apt-get-install git;;
 esac
@@ -27,7 +27,7 @@ esac
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 #install gnome tweaks
-case "$1" in
+case "$os" in
     fedora) sudo dnf install gnome-tweaks;;
     ubuntu) sudo apt-get-install gnome-tweaks;;
 esac
