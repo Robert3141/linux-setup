@@ -3,4 +3,4 @@
 Optional flags:  
 ```-c``` includes ccache setup in ~/.bashrc  
 ~~```-g``` installs grub2 theme~~  
-```-os``` another os for software install (```fedora``` uses dnf, ```ubuntu``` uses apt)  
+```-os``` another os for software install (```fedora```(default) uses dnf, ```ubuntu``` uses apt)  
