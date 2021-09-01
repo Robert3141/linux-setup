@@ -55,6 +55,10 @@ themeName="Flat-Remix-GTK-$generalColor-Dark"
 mkdir -p ~/.themes/$themeName
 cp "./gnome-theme/$themeName" ~/.themes/$themeName -r -f
 gsettings set org.gnome.desktop.interface gtk-theme $themeName
+case "$os" in
+    fedora) sudo dnf install flat-remix-gtk2-theme flat-remix-gtk3-theme;;
+    ubuntu) sudo add-apt-repository ppa:daniruiz/flat-remix;sudo apt update;sudo apt install flat-remix-gtk;;
+esac
 
 #install gnome icons
 if [ ! -d "gnome-icons" ] ; then
@@ -64,3 +68,7 @@ iconName="Flat-Remix-$generalColor-Dark"
 mkdir -p ~/.icons/$iconName
 cp "./gnome-icons/$iconName" ~/.icons/$iconName -r -f
 gsettings set org.gnome.desktop.interface icon-theme $iconName
+case "$os" in
+    fedora) sudo dnf install flat-remix-icon-theme;;
+    ubuntu) sudo add-apt-repository ppa:daniruiz/flat-remix;sudo apt update;sudo apt install flat-remix;;
+esac
