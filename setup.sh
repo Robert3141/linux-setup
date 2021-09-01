@@ -23,6 +23,15 @@ case "$1" in
     ubuntu) sudo apt-get-install git;;
 esac
 
+#install flathub
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+#install gnome tweaks
+case "$1" in
+    fedora) sudo dnf install gnome-tweaks;;
+    ubuntu) sudo apt-get-install gnome-tweaks;;
+esac
+
 #change grub theme
 if [ "$grub" = "true" ]
 then
