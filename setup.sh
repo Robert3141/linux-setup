@@ -3,25 +3,19 @@
 ccash=false
 grub=false
 os="fedora"
+generalColor="Blue"
 
 # get flags
 while [ ! $# -eq 0 ]
 do
     case "$1" in
         --ccash | -c) ccash=true;;
-        --grub | -g) grub=true;;
+        #--grub | -g) grub=true;; #currently broken
         --os | -o) os="$OPTARG";;
+        --themeColor | -t) generalColor="$OPTARG"
     esac
     shift
 done
-
-#~/home/.bashrc
-cp ./files/.bashrc ~/.bashrc -f
-if [ "$ccash" = "true" ]
-then
-    cat ./files/.bashrc-ccache >> ~/.bashrc
-fi
-source ~/.bashrc
 
 #install git
 case "$1" in
@@ -35,3 +29,29 @@ then
     git clone https://github.com/sandesh236/sleek--themes.git themes
     sudo bash "./themes/Sleek theme-dark/install.sh"
 fi
+
+#~/home/.bashrc
+cp ./files/.bashrc ~/.bashrc -f
+if [ "$ccash" = "true" ]
+then
+    cat ./files/.bashrc-ccache >> ~/.bashrc
+fi
+source ~/.bashrc
+
+#install gnome theme
+if [ ! -d "gnome-theme" ] ; then
+    git clone https://github.com/daniruiz/flat-remix-gtk.git gnome-theme
+fi
+themeName="Flat-Remix-GTK-$generalColor-Dark"
+mkdir -p ~/.themes/$themeName
+cp "./gnome-theme/$themeName" ~/.themes/$themeName -r -f
+gsettings set org.gnome.desktop.interface gtk-theme $themeName
+
+#install gnome icons
+if [ ! -d "gnome-icons" ] ; then
+    git clone https://github.com/daniruiz/flat-remix.git gnome-icons
+fi
+iconName="Flat-Remix-$generalColor-Dark"
+mkdir -p ~/.icons/$iconName
+cp "./gnome-icons/$iconName" ~/.icons/$iconName -r -f
+gsettings set org.gnome.desktop.interface icon-theme $iconName
